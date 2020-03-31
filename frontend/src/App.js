@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import Main from './pages/Main'
+import Login from './pages/Login'
 
 
-App = () => {
+const App = () => {
   const [uid, setUid] = useState(-1)
   const [gid, setGid] = useState(-1)
   useState

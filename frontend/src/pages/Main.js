@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-Main = () => {
+const Main = () => {
 
     const [isJoin, setIsJoin] = useState([])
     const [text, setText] = useState('')

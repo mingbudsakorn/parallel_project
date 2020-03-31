@@ -1,12 +1,10 @@
-import './style.css';
-
 import React, { useState, Component } from 'react';
 
-Login = () => {
+const Login = () => {
 
     const [username, setUsername] = useState('')
 
-    handleSubmit = () => {
+    const handleSubmit = () => {
         console.log('TODO')
     }
 
