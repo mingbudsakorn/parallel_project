@@ -6,7 +6,7 @@ import Login from './pages/Login'
 const App = () => {
   const [uid, setUid] = useState(-1)
   const [gid, setGid] = useState(-1)
-  useState
+  // useState
   return (
     <div style={{ width: '100%', height: '100vh' }}>
       {window.location.pathname === '/login' && <Login changeUid={setUid} />}
