@@ -9,29 +9,32 @@ var indexRouter = require('./routes/index');
 
 //socket
 var io = require('socket.io')();
-io.on('connection', client => {
-  console.log(client)
+io.on('connection', (client) => {
+  console.log(client);
   console.log('user connected.');
 
   // เมื่อ Client ตัดการเชื่อมต่อ
   client.on('disconnect', () => {
-    console.log('user disconnected')
-  })
+    console.log('user disconnected');
+  });
 
   // ส่งข้อมูลไปยัง Client ทุกตัวที่เขื่อมต่อแบบ Realtime
   client.on('sent-message', function (message) {
-    io.sockets.emit('new-message', message)
-  })
+    io.sockets.emit('new-message', message);
+  });
 });
-io.listen(3001);
+io.listen(5001);
 global.io = io;
 
 var app = express();
 
 app.use(cors());
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
   next();
 });
 
