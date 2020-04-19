@@ -27,7 +27,13 @@ export default function ButtonAppBar() {
       <AppBar position="static" style={{ backgroundColor: 'black' }}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <img src={Logo} alt="Logo" width="160" height="45"></img>
+            <img
+              src={Logo}
+              alt="Logo"
+              width="160"
+              height="45"
+              style={{ marginTop: 10 }}
+            ></img>
           </Typography>
           <Button color="inherit">SIGN OUT</Button>
         </Toolbar>

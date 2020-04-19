@@ -3,7 +3,10 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import AppBar from '@material-ui/core/AppBar';
 import TextField from '@material-ui/core/TextField';
 import Bar from '../components/Bar';
+import Group from '../components/Group';
 import { Button, Grid, Link } from '@material-ui/core';
+import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography';
 
 const Main = () => {
 
@@ -26,12 +29,21 @@ const Main = () => {
     return (
         <div>
             <Bar/>
-            <Grid container spacing={1}>
-                <Grid item xs={6}>
-                    Groups
+            <Grid container spacing={0}>
+                <Grid xs={4}>
+                    <Container style={{backgroundColor:'#424141'}}>
+                        <Typography variant="h5" style={{color:'white', marginBottom:10}}>
+                            GROUPS
+                        </Typography>
+                        <Group/>
+                    </Container>
                 </Grid>
-                <Grid item xs={6}>
-                    Group1
+                <Grid xs={8}>
+                    <Container style={{backgroundColor:'grey'}}>
+                        <Typography variant="h5" style={{color:'white', marginBottom:10}}>
+                            GROUPS
+                        </Typography>
+                    </Container>
                 </Grid>
             </Grid>
         </div>
