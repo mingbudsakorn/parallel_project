@@ -7,6 +7,7 @@ import Group from '../components/Group';
 import { Button, Grid, Link } from '@material-ui/core';
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography';
+import ChatBox from '../components/ChatBox'
 
 const Main = () => {
 
@@ -41,8 +42,9 @@ const Main = () => {
                 <Grid xs={8}>
                     <Container style={{backgroundColor:'grey'}}>
                         <Typography variant="h5" style={{color:'white', marginBottom:10}}>
-                            GROUPS
+                            GROUP1
                         </Typography>
+                        <ChatBox/>
                     </Container>
                 </Grid>
             </Grid>
