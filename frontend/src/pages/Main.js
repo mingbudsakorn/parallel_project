@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import AppBar from '@material-ui/core/AppBar';
+import TextField from '@material-ui/core/TextField';
+import appBar from '../components/appBar';
 
 const Main = () => {
 
@@ -19,9 +23,10 @@ const Main = () => {
     // useEffect() {}
 
     return (
-        <div style={{ width: '100%', height: '100vh' }}>
-            Main page
+        <div>
+            <appBar/>
         </div>
+        
     );
 
 }
