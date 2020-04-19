@@ -21,7 +21,7 @@ router.post('/auth', (req, res) => {
   });
 });
 
-router.get('/group', (req, res) => {
+router.get('/user-group', (req, res) => {
   Join.find({ uid: req.query.uid }, (err, joins) => {
     if (err) {
       res.send({ groups: [] });
