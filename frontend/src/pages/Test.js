@@ -1,12 +1,12 @@
 import React from 'react';
 import ChatBox from '../components/ChatBox';
-import appBar from '../components/appBar';
+import Bar from '../components/Bar';
 class Test extends React.Component {
   render() {
     return (
       <div>
+        <Bar />
         <div>Test</div>
-        <appBar />
         <ChatBox />
         
       </div>

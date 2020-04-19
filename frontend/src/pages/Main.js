@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import AppBar from '@material-ui/core/AppBar';
 import TextField from '@material-ui/core/TextField';
-import appBar from '../components/appBar';
+import Bar from '../components/Bar';
 
 const Main = () => {
 
@@ -24,7 +24,7 @@ const Main = () => {
 
     return (
         <div>
-            <appBar/>
+            <Bar/>
         </div>
         
     );
