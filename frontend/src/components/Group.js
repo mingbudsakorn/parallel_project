@@ -15,10 +15,10 @@ const Group = () => {
   return (
     
     <Grid container spacing={0}>
-        <Grid item xs={9}>
+        <Grid xs={9} style={{height:'100vh', flexDirection:'column', justifyContent:'center'}}>
             <TextField variant='outlined' size='small' fullWidth style={{backgroundColor:'white', borderRadius:"12px"}}/>
         </Grid>
-        <Grid item xs={3}>
+        <Grid xs={3}>
             <Button style={{color:'black', backgroundColor:'yellow', marginLeft:25}} />
         </Grid>
     </Grid>

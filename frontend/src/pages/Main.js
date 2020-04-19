@@ -30,7 +30,7 @@ const Main = () => {
         <div>
             <Bar/>
             <Grid container spacing={0}>
-                <Grid item xs={4}>
+                <Grid xs={4}>
                     <Container style={{backgroundColor:'#424141'}}>
                         <Typography variant="h5" style={{color:'white', marginBottom:10}}>
                             GROUPS
@@ -38,7 +38,7 @@ const Main = () => {
                         <Group/>
                     </Container>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid xs={8}>
                     <Container style={{backgroundColor:'grey'}}>
                         <Typography variant="h5" style={{color:'white', marginBottom:10}}>
                             GROUPS
