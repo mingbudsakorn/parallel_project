@@ -8,7 +8,6 @@ class Test extends React.Component {
         <Bar />
         <div>Test</div>
         <ChatBox />
-        
       </div>
     );
   }

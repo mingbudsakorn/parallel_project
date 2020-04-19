@@ -2,7 +2,7 @@ import React from 'react';
 // import axios from 'axios';
 // import moment from 'moment';
 import Avatar from '@material-ui/core/Avatar';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 function stringToColor(string) {
   let hash = 0;
@@ -24,24 +24,81 @@ function stringToColor(string) {
   return colour;
 }
 
+const useStyles = makeStyles({
+  root: {
+    color: '#606060',
+    fontSize: '16px',
+  },
+  second: {
+    color: '#C6C6C6',
+    fontSize: '12px',
+  },
+});
+
 const MyAvatar = withStyles({
   root: {
     backgroundColor: stringToColor('Material-UI'),
+    // backgroundColor: stringToColor(name),
     size: '77px',
   },
   label: {
-    textTransform: 'capitalize',
-    fontFamily: 'Roboto',
+    // textTransform: 'capitalize',
+    // fontFamily: 'Roboto',
     fontSize: '16px',
   },
 })(Avatar);
 
 // const formatter = (date) => moment(date).format('MMMM Do YYYY, h:mm a');
 const ChatBox = () => {
+  const classes = useStyles();
   return (
     <div style={{ display: 'flex' }}>
       <MyAvatar>N</MyAvatar>
-      <div>Name</div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            margin: '0 0 3px 10px',
+          }}
+        >
+          <div
+            className={classes.root}
+            style={{
+              display: 'flex',
+              alignItems: 'flex-end',
+              marginRight: '10px',
+            }}
+          >
+            Name
+          </div>
+          <div
+            className={classes.second}
+            style={{
+              display: 'flex',
+              alignItems: 'flex-end',
+              marginRight: '10px',
+            }}
+          >
+            date
+          </div>
+          <div
+            className={classes.second}
+            style={{ display: 'flex', alignItems: 'flex-end' }}
+          >
+            time
+          </div>
+        </div>
+        <div>
+          <div className={classes.root} style={{ marginLeft: '20px' }}>
+            Hello
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
