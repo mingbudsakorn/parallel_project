@@ -19,7 +19,7 @@ const Main = () => {
             backgroundColor: '#424141',
             width: '40vh',
             height: '80vh',
-            padding: '20px 10px 30px 10px',
+            padding: '20px 15px 30px 15px',
           }}
         >
           <div style={{ color: '#EFEFEF', fontSize: '20px', marginLeft: 16 }}>
@@ -36,14 +36,18 @@ const Main = () => {
               Create new group
             </div>
             <TextField
-              placeholder="  NAME"
+              variant="outlined"
+              placeholder="NAME"
+              size="small"
               style={{
                 backgroundColor: '#EFEFEF',
-                width: 250,
+                width: 286,
                 borderRadius: 6,
               }}
             />
-            {/* <IconButton color="#FFF100">add_circle</IconButton> */}
+            <AddCircleIcon
+              style={{ color: '#FFF100', fontSize: 36, marginLeft: 6 }}
+            />
           </div>
         </Paper>
       </div>
