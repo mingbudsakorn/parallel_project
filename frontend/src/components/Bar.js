@@ -24,7 +24,10 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{ backgroundColor: 'black' }}>
+      <AppBar
+        position="static"
+        style={{ backgroundColor: 'black', boxShadow: 'none' }}
+      >
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             <img

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Main from './pages/Main';
+import Main2 from './pages/Main2';
 import Login from './pages/Login';
 import Test from './pages/Test';
 
@@ -13,6 +14,10 @@ const App = () => {
       {window.location.pathname === '/main' && (
         <Main uid={uid} gid={gid} changeGid={setGid} />
       )}
+      {window.location.pathname === '/main2' && (
+        <Main2 uid={uid} gid={gid} changeGid={setGid} />
+      )}
+
       {window.location.pathname === '/test' && (
         <Test uid={uid} gid={gid} changeGid={setGid} />
       )}
