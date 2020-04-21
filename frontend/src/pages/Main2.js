@@ -118,6 +118,7 @@ const Main = () => {
                   alignSelf: 'center',
                   backgroundColor: 'yellow',
                   padding: '1px 8px 1px 8px',
+                  marginRight: '10px',
                 }}
               >
                 LEAVE GROUP
