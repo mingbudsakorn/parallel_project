@@ -7,6 +7,8 @@ import ChatBox from '../components/ChatBox';
 import GroupBox from '../components/GroupBox';
 
 const Main = () => {
+  const [status1, setStatus1] = React.useState(false);
+
   return (
     <div>
       <Bar />
@@ -80,11 +82,38 @@ const Main = () => {
             justifyContent: 'space-between',
             flexDirection: 'column',
             padding: '20px 20px 30px 20px',
-            width: '126vw',
+            width: '100vw',
           }}
         >
           <div>
             <ChatBox />
+            {!status1 && (
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  margin: '5px 0 5px 0',
+                }}
+              >
+                <div
+                  style={{
+                    backgroundColor: '#F4F4F4',
+                    color: '#606060',
+                    fontSize: '14px',
+                    height: '22px',
+                    width: '55px',
+                    borderRadius: '10%',
+                    textAlign: 'center',
+                    textAlignVertical: 'center',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                  }}
+                >
+                  unread
+                </div>
+              </div>
+            )}
           </div>
           <TextField
             variant="outlined"
