@@ -21,7 +21,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar() {
   const classes = useStyles();
-
+  const handleLogout = () => {
+    localStorage.removeItem('username');
+    localStorage.removeItem('uid');
+    window.location.pathname = '/';
+  };
   return (
     <div className={classes.root}>
       <AppBar
@@ -38,7 +42,9 @@ export default function ButtonAppBar() {
               style={{ marginTop: 10 }}
             ></img>
           </Typography>
-          <Button color="inherit">SIGN OUT</Button>
+          <Button color="inherit" onClick={handleLogout}>
+            SIGN OUT
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
