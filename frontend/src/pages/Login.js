@@ -64,7 +64,7 @@ const Login = () => {
           <TextField
             variant="outlined"
             margin="normal"
-            fullWidth
+            width='20vw'
             placeholder="Username"
             value={username}
             onChange={(e) => {

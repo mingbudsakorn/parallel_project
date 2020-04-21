@@ -109,7 +109,7 @@ const Main = () => {
               </div>
               
               <div style={{flexDirection:'row', alignSelf:'flex-end'}}>
-                <Button style={{backgroundColor:'yellow',display:'flex', flexDirection:'row', alignSelf:'flex-end', padding: '1px 8px 1px 8px'}}>
+                <Button style={{backgroundColor:'yellow',display:'flex', flexDirection:'column', alignSelf:'flex-end', padding: '1px 8px 1px 8px'}}>
                   LEAVE GROUP
                 </Button>
               </div>

@@ -6,7 +6,7 @@ const GrouupBox = () => {
   const [status1, setStatus1] = React.useState(false);
   const [status2, setStatus2] = React.useState(true);
   const [status3, setStatus3] = React.useState(true);
-  const [status4, setStatus4] = React.useState(true);
+  const [status4, setStatus4] = React.useState(false);
 
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -35,7 +35,7 @@ const GrouupBox = () => {
               style={{
                 display: 'flex',
                 alignSelf: 'center',
-                marginRight: 35,
+                marginRight: 30,
                 borderRadius: '100%',
                 backgroundColor: '#FF8258',
                 height: '12px',
@@ -45,17 +45,14 @@ const GrouupBox = () => {
           )}
           {status4 && (
             <Button
-              style={
-                {
-                  // display: 'flex',
-                  // alignSelf: 'center',
-                  // marginRight: 35,
-                  // borderRadius: '100%',
-                  // backgroundColor: '#FF8258',
-                  // height: '12px',
-                  // width: '12px',
-                }
-              }
+              style={{
+                display: 'flex',
+                alignSelf: 'center',
+                backgroundColor: '#FFF100',
+                color: '#606060',
+                marginRight: 10,
+                padding: '1px 3px 1px 3px',
+              }}
             >
               JOIN
             </Button>
