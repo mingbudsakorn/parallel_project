@@ -15,7 +15,7 @@ const Group = () => {
   return (
     
     <Grid container spacing={0}>
-        <Grid xs={9} style={{height:'89vh', flexDirection:'column', justifyContent:'center'}}>
+        <Grid xs={9} style={{height:'100vh', flexDirection:'column', justifyContent:'center'}}>
             <TextField variant='outlined' size='small' fullWidth style={{backgroundColor:'white', borderRadius:"12px"}}/>
         </Grid>
         <Grid xs={3}>
