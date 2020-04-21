@@ -14,7 +14,7 @@ const Main = () => {
   return (
     <div>
       <Bar />
-      <div style={{ display: 'flex', height: '92vh' }}>
+      <div style={{ display: 'flex', height: '95vh' }}>
         <Paper
           square
           elevation={0}
