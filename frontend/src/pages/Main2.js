@@ -87,38 +87,38 @@ const Main = () => {
         >
           <div
             style={{
-              height: '6vh',
               backgroundColor: '#606060',
               display: 'flex',
               justifyContent: 'flex-end',
-              //alignItems:'center',
-              color: '#EFEFEF',
-              fontSize: '23px',
             }}
           >
+            <div style={{ display: 'flex', flexGrow: 3 }} />
             <div
               style={{
                 display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                alignSelf: 'center',
+                justifyContent: 'space-between',
+                flexGrow: 2,
               }}
             >
-              <div>GROUP1</div>
-              <IconButton style={{ color: '#979797' }}>
-                <CloseIcon />
-              </IconButton>
-            </div>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
+                <div style={{ color: '#EFEFEF', fontSize: '20px' }}>GROUP1</div>
+                <IconButton style={{ color: '#979797' }}>
+                  <CloseIcon />
+                </IconButton>
+              </div>
 
-            <div style={{ flexDirection: 'row', alignSelf: 'flex-end' }}>
               <Button
                 style={{
-                  backgroundColor: 'yellow',
                   display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'flex-end',
+                  alignSelf: 'center',
+                  backgroundColor: 'yellow',
                   padding: '1px 8px 1px 8px',
+                  marginRight: '10px',
                 }}
               >
                 LEAVE GROUP
