@@ -35,21 +35,20 @@ const useStyles = makeStyles({
   },
 });
 
-const MyAvatar = withStyles({
-  root: {
-    backgroundColor: stringToColor('Material-UI'),
-    // backgroundColor: stringToColor(name),
-    size: '77px',
-  },
-  label: {
-    // textTransform: 'capitalize',
-    // fontFamily: 'Roboto',
-    fontSize: '16px',
-  },
-})(Avatar);
-
 // const formatter = (date) => moment(date).format('MMMM Do YYYY, h:mm a');
-const ChatBox = () => {
+const ChatBox = (name) => {
+  const MyAvatar = withStyles({
+    root: {
+      backgroundColor: stringToColor('Material-UI'),
+      // backgroundColor: stringToColor(name),
+      size: '77px',
+    },
+    label: {
+      // textTransform: 'capitalize',
+      // fontFamily: 'Roboto',
+      fontSize: '16px',
+    },
+  })(Avatar);
   const classes = useStyles();
   return (
     <div style={{ display: 'flex' }}>
@@ -93,10 +92,8 @@ const ChatBox = () => {
             time
           </div>
         </div>
-        <div>
-          <div className={classes.root} style={{ marginLeft: '20px' }}>
-            Hello
-          </div>
+        <div className={classes.root} style={{ marginLeft: '20px' }}>
+          Hello
         </div>
       </div>
     </div>
