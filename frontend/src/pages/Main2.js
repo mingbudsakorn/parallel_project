@@ -6,6 +6,8 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import ChatBox from '../components/ChatBox';
 import GroupBox from '../components/GroupBox';
 import { Button, Grid, Link } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
 
 const Main = () => {
   return (
@@ -15,7 +17,7 @@ const Main = () => {
         <Paper
           square
           elevation={0}
-          width="40vh"
+          width="20vw"
           style={{
             display: 'flex',
             justifyContent: 'space-between',
@@ -37,7 +39,11 @@ const Main = () => {
             <div style={{ border: '0.5px solid #606060' }} />
             <GroupBox />
           </div>
-          <div style={{ padding: '20px 15px 30px 15px' }}>
+          <div
+            style={{
+              padding: '20px 15px 30px 15px',
+            }}
+          >
             <div
               style={{
                 color: '#A8A8A8',
@@ -47,19 +53,26 @@ const Main = () => {
             >
               Create new group
             </div>
-            <TextField
-              variant="outlined"
-              placeholder="NAME"
-              size="small"
+            <div
               style={{
-                backgroundColor: '#EFEFEF',
-                width: 286,
-                borderRadius: 6,
+                display: 'flex',
+                alignSelf: 'center',
               }}
-            />
-            <AddCircleIcon
-              style={{ color: '#FFF100', fontSize: 36, marginLeft: 6 }}
-            />
+            >
+              <TextField
+                variant="outlined"
+                placeholder="NAME"
+                size="small"
+                style={{
+                  backgroundColor: '#EFEFEF',
+                  width: 286,
+                  borderRadius: 6,
+                }}
+              />
+              <AddCircleIcon
+                style={{ color: '#FFF100', fontSize: 36, marginLeft: 6 }}
+              />
+            </div>
           </div>
         </Paper>
         <Paper
@@ -70,20 +83,41 @@ const Main = () => {
             justifyContent: 'space-between',
             flexDirection: 'column',
             //padding: '20px 20px 30px 20px',
-            width: '126vh',
+            width: '100vw',
           }}
         >
           <div>
             <div
-              
               style={{
                 height: '6vh',
-                backgroundColor: '#606060'
+                backgroundColor: '#606060',
+                display:'flex',
+                justifyContent:'flex-end',
+                //alignItems:'center',
+                color:'#EFEFEF',
+                fontSize:'23px'
               }}
             >
+              <div style={{display:'flex',flexDirection:'row', alignItems:'center', justifyContent:'center', alignSelf:'center'}}>
+
+                <div>
+                GROUP1
+              </div>
+              <IconButton style={{color:'#979797'}}>
+                <CloseIcon />
+              </IconButton>
+              </div>
+              
+              <div style={{flexDirection:'row', alignSelf:'flex-end'}}>
+                <Button style={{backgroundColor:'yellow',display:'flex', flexDirection:'row', alignSelf:'flex-end', padding: '1px 8px 1px 8px'}}>
+                  LEAVE GROUP
+                </Button>
+              </div>
+              
             </div>
+            
 
-
+            
             <ChatBox />
           </div>
           <TextField
@@ -91,6 +125,8 @@ const Main = () => {
             placeholder="Message.."
             size="small"
             style={{
+              display: 'flex',
+              alignSelf: 'center',
               backgroundColor: '#EFEFEF',
               width: '100%',
               borderRadius: 6,
