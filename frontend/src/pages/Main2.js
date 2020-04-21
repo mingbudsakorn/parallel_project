@@ -87,7 +87,7 @@ const Main = () => {
         >
           <div>
             <ChatBox />
-            {!status1 && (
+            {!status1 && ( //TODO set status
               <div
                 style={{
                   display: 'flex',
