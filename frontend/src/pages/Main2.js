@@ -12,9 +12,9 @@ import IconButton from '@material-ui/core/IconButton';
 const Main = () => {
   const [status1, setStatus1] = React.useState(true);
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <Bar />
-      <div style={{ display: 'flex', height: '92vh' }}>
+      <div style={{ display: 'flex', height: '100vh' }}>
         <Paper
           square
           elevation={0}
