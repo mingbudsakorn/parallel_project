@@ -4,6 +4,7 @@ import { Paper } from '@material-ui/core/';
 import TextField from '@material-ui/core/TextField';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import ChatBox from '../components/ChatBox';
+import GroupBox from '../components/GroupBox';
 
 const Main = () => {
   return (
@@ -19,13 +20,23 @@ const Main = () => {
             justifyContent: 'space-between',
             flexDirection: 'column',
             backgroundColor: '#424242',
-            padding: '20px 15px 30px 15px',
           }}
         >
-          <div style={{ color: '#EFEFEF', fontSize: '20px', marginLeft: 16 }}>
-            GROUPS
-          </div>
           <div>
+            <div
+              style={{
+                color: '#EFEFEF',
+                fontSize: '20px',
+                marginLeft: 16,
+                padding: '20px 15px 20px 15px',
+              }}
+            >
+              GROUPS
+            </div>
+            <div style={{ border: '0.5px solid #606060' }} />
+            <GroupBox />
+          </div>
+          <div style={{ padding: '20px 15px 30px 15px' }}>
             <div
               style={{
                 color: '#A8A8A8',
