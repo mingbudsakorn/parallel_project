@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import ChatBox from '../components/ChatBox';
 import GroupBox from '../components/GroupBox';
+import { Button, Grid, Link } from '@material-ui/core';
 
 const Main = () => {
   return (
@@ -68,11 +69,21 @@ const Main = () => {
             display: 'flex',
             justifyContent: 'space-between',
             flexDirection: 'column',
-            padding: '20px 20px 30px 20px',
+            //padding: '20px 20px 30px 20px',
             width: '126vh',
           }}
         >
           <div>
+            <div
+              
+              style={{
+                height: '6vh',
+                backgroundColor: '#606060'
+              }}
+            >
+            </div>
+
+
             <ChatBox />
           </div>
           <TextField
