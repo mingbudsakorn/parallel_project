@@ -10,7 +10,7 @@ const App = () => {
   // useState
   return (
     <div style={{ width: '100%', height: '100vh' }}>
-      {window.location.pathname === '/login' && <Login changeUid={setUid} />}
+      {window.location.pathname === '/' && <Login changeUid={setUid} />}
       {window.location.pathname === '/main' && (
         <Main uid={uid} gid={gid} changeGid={setGid} />
       )}

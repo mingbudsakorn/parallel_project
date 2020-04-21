@@ -5,24 +5,56 @@ import { Container } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import axios from 'axios';
+import { loadBalancer } from '../ip';
 
 const Group = () => {
+  const [newGname, setNewGname] = useState('');
 
-  const handleSubmit = () => {
-    console.log('TODO');
+  const handleCreateGroup = async () => {
+    try {
+      const uid = localStorage.getItem('uid');
+      const result = await axios.post(loadBalancer + '/group/create', {
+        gname: newGname,
+        uid,
+      });
+      const { data, status } = result;
+      if (status === 200) {
+        console.log('new gid', data.gid);
+        setNewGname('');
+        // TODO : fetchdata
+      }
+    } catch (e) {
+      console.log('Can not access database');
+    }
   };
 
   return (
-    
     <Grid container spacing={0}>
-        <Grid xs={9} style={{height:'89vh', flexDirection:'column', justifyContent:'center'}}>
-            <TextField variant='outlined' size='small' fullWidth style={{backgroundColor:'white', borderRadius:"12px"}}/>
-        </Grid>
-        <Grid xs={3}>
-            <Button style={{color:'black', backgroundColor:'yellow', marginLeft:25}} />
-        </Grid>
+      <Grid
+        xs={9}
+        style={{
+          height: '89vh',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
+        <TextField
+          variant="outlined"
+          size="small"
+          fullWidth
+          style={{ backgroundColor: 'white', borderRadius: '12px' }}
+          value={newGname}
+          onChange={(e) => setNewGname(e.target.value)}
+        />
+      </Grid>
+      <Grid xs={3}>
+        <Button
+          style={{ color: 'black', backgroundColor: 'yellow', marginLeft: 25 }}
+          onClick={handleCreateGroup}
+        />
+      </Grid>
     </Grid>
-    
   );
 };
 

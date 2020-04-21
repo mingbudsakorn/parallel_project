@@ -36,6 +36,7 @@ const Main = () => {
                         <Typography variant="h5" style={{color:'white', marginBottom:10}}>
                             GROUPS
                         </Typography>
+                        
                         <Group/>
                     </Container>
                 </Grid>
