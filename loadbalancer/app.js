@@ -7,21 +7,9 @@ var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 
-//socket
 var io = require('socket.io')();
 io.on('connection', (client) => {
-  console.log(client);
   console.log('user connected.');
-
-  // เมื่อ Client ตัดการเชื่อมต่อ
-  client.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-
-  // ส่งข้อมูลไปยัง Client ทุกตัวที่เขื่อมต่อแบบ Realtime
-  client.on('sent-message', function (message) {
-    io.sockets.emit('new-message', message);
-  });
 });
 io.listen(5001);
 global.io = io;
