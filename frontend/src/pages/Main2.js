@@ -148,17 +148,17 @@ const Main = ({ uid, changeUid }) => {
       handleReceiveMessage(response);
     });
     return () => {
-      socket.disconnect();
+      socket.off('chat');
     };
   }, [focusedGroup]);
 
-  useEffect(async () => {
-    await fetchAllGroup();
+  useEffect(() => {
+    fetchAllGroup();
     socket.on('group', async (response) => {
       await fetchAllGroup();
     });
     return () => {
-      socket.disconnect();
+      socket.off('group');
     };
   }, []);
 
