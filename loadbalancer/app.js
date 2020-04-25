@@ -6,7 +6,18 @@ var logger = require('morgan');
 var cors = require('cors');
 
 var indexRouter = require('./routes/index');
-
+// var server = require('http').createServer();
+// var io = require('socket.io')(server, {
+//   path: '/socket',
+//   // serveClient: false,
+//   origins: '*:*',
+//   // origins: 'allowedOrigins',
+//   // // below are engine.IO options
+//   // pingInterval: 10000,
+//   // pingTimeout: 5000,
+//   // cookie: false
+// });
+// io.set('origins', '*:*');
 var io = require('socket.io')();
 io.on('connection', (client) => {
   console.log('user connected.');

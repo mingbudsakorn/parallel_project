@@ -44,7 +44,7 @@ const Main = ({ uid, changeUid }) => {
       const new_allGroup = allGroup;
       new_allGroup[index].unread = false;
       setAllGroup(new_allGroup);
-      await readMessage(allGroup[index].gid);
+      await handleReadMessage(allGroup[index].gid);
     }
   };
 
@@ -81,11 +81,11 @@ const Main = ({ uid, changeUid }) => {
     const { status } = result;
     if (status === 200) {
       setMessage('');
-      await readMessage(focusedGroup.gid);
-      const new_message = await fetchMessage(focusedGroup.gid);
-      await fetchAllGroup();
-      setFocus(focusedGroup);
-      handleSetFocusMessage(new_message);
+      // await handleReadMessage(focusedGroup.gid);
+      // const new_message = await fetchMessage(focusedGroup.gid);
+      // await fetchAllGroup();
+      // setFocus(focusedGroup);
+      // handleSetFocusMessage(new_message);
     }
   };
 
@@ -100,7 +100,7 @@ const Main = ({ uid, changeUid }) => {
     }
   };
 
-  const readMessage = async (gid) => {
+  const handleReadMessage = async (gid) => {
     const result = await axios.post(loadBalancer + '/message/read', {
       uid,
       gid,
@@ -128,29 +128,30 @@ const Main = ({ uid, changeUid }) => {
   };
 
   const handleReceiveMessage = async (data) => {
-    if (data.message.uid !== uid) {
-      if (
-        data.message &&
-        focusedGroup &&
-        data.message.gid === focusedGroup.gid
-      ) {
-        await readMessage(focusedGroup.gid);
-        const new_message = await fetchMessage(focusedGroup.gid);
-        handleSetFocusMessage(new_message);
-      } else {
-        await fetchAllGroup();
-      }
+    // if (data.message.uid !== uid) {
+    if (data.message && focusedGroup && data.message.gid === focusedGroup.gid) {
+      await handleReadMessage(focusedGroup.gid);
+      const { unreadMessage, readMessage } = focusedMessage;
+      readMessage.push(...unreadMessage);
+      readMessage.push(data.message);
+      handleSetFocusMessage({ readMessage, unreadMessage: [] });
+      // const new_message = await fetchMessage(focusedGroup.gid);
+      // handleSetFocusMessage(new_message);
+    } else {
+      await fetchAllGroup();
     }
+    // }
   };
 
   useEffect(() => {
     socket.on('chat', (response) => {
+      console.log('hiii');
       handleReceiveMessage(response);
     });
     return () => {
       socket.off('chat');
     };
-  }, [focusedGroup]);
+  }, [focusedGroup, focusedMessage]);
 
   useEffect(() => {
     fetchAllGroup();

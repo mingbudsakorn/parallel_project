@@ -48,6 +48,7 @@ router.post('/create', (req, res) => {
 
 router.post('/join', (req, res) => {
   const { gid, uid } = req.body;
+  if (!gid || !uid) throw err;
   Group.find({ _id: gid }, (err, groups) => {
     if (err) {
       throw err;
