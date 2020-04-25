@@ -1,9 +1,10 @@
+const your_ip = 'http://192.168.1.197';
 const ip = {
-  loadBalancer: 'http://127.0.0.1:5000',
-  socketServer: 'http://127.0.0.1:5001',
-  primaryBackend: 'http://127.0.0.1:4000',
-  secondaryBackend: 'http://127.0.0.1:4001',
-  frontend: 'http://127.0.0.1:3000',
+  loadBalancer: your_ip + ':5000',
+  socketServer: your_ip + ':5001',
+  primaryBackend: your_ip + ':4000',
+  secondaryBackend: your_ip + ':4001',
+  frontend: your_ip + ':3000',
 };
 
 module.exports = ip;

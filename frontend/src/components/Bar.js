@@ -19,11 +19,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar({ changeUid }) {
   const classes = useStyles();
   const handleLogout = () => {
-    localStorage.removeItem('username');
-    localStorage.removeItem('uid');
+    changeUid('');
     window.location.pathname = '/';
   };
   return (

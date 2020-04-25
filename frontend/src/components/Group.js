@@ -8,19 +8,17 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import axios from 'axios';
 import { loadBalancer } from '../ip';
 
-const Group = () => {
+const Group = ({ uid }) => {
   const [newGname, setNewGname] = useState('');
 
   const handleCreateGroup = async () => {
     try {
-      const uid = localStorage.getItem('uid');
       const result = await axios.post(loadBalancer + '/group/create', {
         gname: newGname,
         uid,
       });
       const { data, status } = result;
       if (status === 200) {
-        console.log('new gid', data.gid);
         setNewGname('');
         // TODO : fetchdata
       }

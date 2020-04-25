@@ -1,10 +1,9 @@
 import React from 'react';
-// import axios from 'axios';
-// import moment from 'moment';
+import moment from 'moment';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
-function stringToColor(string) {
+const stringToColor = (string) => {
   let hash = 0;
   let i;
 
@@ -20,9 +19,8 @@ function stringToColor(string) {
     colour += `00${value.toString(16)}`.substr(-2);
   }
   /* eslint-enable no-bitwise */
-
   return colour;
-}
+};
 
 const useStyles = makeStyles({
   root: {
@@ -33,26 +31,43 @@ const useStyles = makeStyles({
     color: '#C6C6C6',
     fontSize: '12px',
   },
+  picture: {
+    width: 50,
+    height: 50,
+    borderRadius: '50%',
+    fontSize: '24px',
+    color: 'white',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 // const formatter = (date) => moment(date).format('MMMM Do YYYY, h:mm a');
-const ChatBox = (name) => {
+const ChatBox = ({ data }) => {
+  const { content, user, send_at } = data;
   const MyAvatar = withStyles({
     root: {
-      backgroundColor: stringToColor('Material-UI'),
+      backgroundColor: stringToColor(user.name),
       // backgroundColor: stringToColor(name),
       size: '77px',
     },
-    label: {
-      // textTransform: 'capitalize',
-      // fontFamily: 'Roboto',
-      fontSize: '16px',
-    },
+    // label: {
+    // textTransform: 'capitalize',
+    // fontFamily: 'Roboto',
+    // fontSize: '16px',
+    // },
   })(Avatar);
   const classes = useStyles();
   return (
-    <div style={{ display: 'flex' }}>
-      <MyAvatar>N</MyAvatar>
+    <div style={{ display: 'flex', margin: '24px 0px' }}>
+      {/* <MyAvatar>{user.name[0]}</MyAvatar> */}
+      <div
+        className={classes.picture}
+        style={{ backgroundColor: stringToColor(user.name) }}
+      >
+        {user.name[0]}
+      </div>
       <div
         style={{
           display: 'flex',
@@ -73,7 +88,7 @@ const ChatBox = (name) => {
               marginRight: '10px',
             }}
           >
-            Name
+            {user.name}
           </div>
           <div
             className={classes.second}
@@ -83,17 +98,17 @@ const ChatBox = (name) => {
               marginRight: '10px',
             }}
           >
-            date
+            {moment(send_at).format('l')}
           </div>
           <div
             className={classes.second}
             style={{ display: 'flex', alignItems: 'flex-end' }}
           >
-            time
+            {moment(send_at).format('x')}
           </div>
         </div>
         <div className={classes.root} style={{ marginLeft: '20px' }}>
-          Hello
+          {content}
         </div>
       </div>
     </div>

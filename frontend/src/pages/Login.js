@@ -7,8 +7,9 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import logo from './FakeLine2.png';
 import axios from 'axios';
 import { loadBalancer } from '../ip';
+import { withRouter } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ changeUid, history }) => {
   const [username, setUsername] = useState('');
   const [error, setError] = useState('');
 
@@ -19,9 +20,8 @@ const Login = () => {
       });
       const { data, status } = result;
       if (status === 200) {
-        localStorage.setItem('username', username);
-        localStorage.setItem('uid', data.uid);
-        window.location.pathname = '/main';
+        changeUid(data.uid);
+        history.push('/main');
       }
     } catch (e) {
       setError('Can not access database');
@@ -107,4 +107,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withRouter(Login);
