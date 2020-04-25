@@ -104,7 +104,7 @@ const ChatBox = ({ data }) => {
             className={classes.second}
             style={{ display: 'flex', alignItems: 'flex-end' }}
           >
-            {moment(send_at).format('x')}
+            {moment(send_at).format('LTS')}
           </div>
         </div>
         <div className={classes.root} style={{ marginLeft: '20px' }}>
