@@ -14,7 +14,7 @@ import { loadBalancer, socketServer } from '../ip';
 import io from 'socket.io-client';
 
 const socket = io(socketServer);
-const Main = ({ uid, changeUid }) => {
+const Main = ({ uid, changeUid, name }) => {
   const [newGroup, setNewGroup] = useState('');
   const [allGroup, setAllGroup] = useState([]);
   const [message, setMessage] = useState('');
@@ -185,7 +185,7 @@ const Main = ({ uid, changeUid }) => {
         height: '100vh',
       }}
     >
-      <Bar changeUid={changeUid} />
+      <Bar changeUid={changeUid} name={name} />
       <div style={{ display: 'flex', height: `calc(100vh - 64px)` }}>
         <Paper
           square

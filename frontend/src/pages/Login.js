@@ -9,7 +9,7 @@ import axios from 'axios';
 import { loadBalancer } from '../ip';
 import { withRouter } from 'react-router-dom';
 
-const Login = ({ changeUid, history }) => {
+const Login = ({ changeUid, history, setName }) => {
   const [username, setUsername] = useState('');
   const [error, setError] = useState('');
 
@@ -21,6 +21,7 @@ const Login = ({ changeUid, history }) => {
       const { data, status } = result;
       if (status === 200) {
         changeUid(data.uid);
+        setName(username);
         history.push('/main');
       }
     } catch (e) {

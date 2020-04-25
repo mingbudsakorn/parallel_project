@@ -17,9 +17,43 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  picture: {
+    width: 40,
+    height: 40,
+    borderRadius: '50%',
+    fontSize: '24px',
+    color: 'white',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: '10px',
+  },
+  focus: {
+    fontSize: '20px',
+    marginRight: '10px',
+  },
 }));
 
-export default function ButtonAppBar({ changeUid }) {
+const stringToColor = (string) => {
+  let hash = 0;
+  let i;
+
+  /* eslint-disable no-bitwise */
+  for (i = 0; i < string.length; i += 1) {
+    hash = string.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  let colour = '#';
+
+  for (i = 0; i < 3; i += 1) {
+    const value = (hash >> (i * 8)) & 0xff;
+    colour += `00${value.toString(16)}`.substr(-2);
+  }
+  /* eslint-enable no-bitwise */
+  return colour;
+};
+
+export default function ButtonAppBar({ changeUid, name }) {
   const classes = useStyles();
   const handleLogout = () => {
     changeUid('');
@@ -41,6 +75,13 @@ export default function ButtonAppBar({ changeUid }) {
               style={{ marginTop: 10 }}
             ></img>
           </Typography>
+          <div
+            className={classes.picture}
+            style={{ backgroundColor: stringToColor(name) }}
+          >
+            {name[0]}
+          </div>
+          <div className={classes.focus}>{name}</div>
           <Button color="inherit" onClick={handleLogout}>
             SIGN OUT
           </Button>
