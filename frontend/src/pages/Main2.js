@@ -209,13 +209,13 @@ const Main = ({ uid, changeUid, name }) => {
             >
               GROUPS
             </div>
+            <div style={{ border: '1px solid #606060' }} />
             {allGroup.map((group, index) => (
               <div
                 key={index}
                 onClick={() => handleOpenGroup(index)}
                 style={{ cursor: 'pointer' }}
               >
-                <div style={{ border: '0.5px solid #606060' }} />
                 <GroupBox
                   data={group}
                   focusGid={focusedGroup && focusedGroup.gid}

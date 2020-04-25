@@ -13,7 +13,7 @@ const GroupBox = ({ data, focusGid, handleJoinGroup }) => {
     >
       <div
         style={{
-          backgroundColor: focusGid === gid ? '#606060' : 'rgba(0, 0, 0, 0.87)',
+          backgroundColor: focusGid === gid ? '#606060' : '#424242',
           width: '100%',
           height: '56px',
           display: 'flex',
