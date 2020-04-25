@@ -1,4 +1,4 @@
-const your_ip = 'http://192.168.1.197';
+const your_ip = 'http://192.168.1.47';
 const ip = {
   loadBalancer: your_ip + ':5000',
   socketServer: your_ip + ':5001',
