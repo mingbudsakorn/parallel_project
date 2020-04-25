@@ -31,6 +31,16 @@ const useStyles = makeStyles({
     color: '#C6C6C6',
     fontSize: '12px',
   },
+  picture: {
+    width: 50,
+    height: 50,
+    borderRadius: '50%',
+    fontSize: '24px',
+    color: 'white',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 // const formatter = (date) => moment(date).format('MMMM Do YYYY, h:mm a');
@@ -51,7 +61,13 @@ const ChatBox = ({ data }) => {
   const classes = useStyles();
   return (
     <div style={{ display: 'flex', margin: '24px 0px' }}>
-      <MyAvatar>{user.name[0]}</MyAvatar>
+      {/* <MyAvatar>{user.name[0]}</MyAvatar> */}
+      <div
+        className={classes.picture}
+        style={{ backgroundColor: stringToColor(user.name) }}
+      >
+        {user.name[0]}
+      </div>
       <div
         style={{
           display: 'flex',
@@ -88,7 +104,7 @@ const ChatBox = ({ data }) => {
             className={classes.second}
             style={{ display: 'flex', alignItems: 'flex-end' }}
           >
-            {moment(send_at).format('LT')}
+            {moment(send_at).format('x')}
           </div>
         </div>
         <div className={classes.root} style={{ marginLeft: '20px' }}>

@@ -3,12 +3,13 @@ import Bar from '../components/Bar';
 import { Paper } from '@material-ui/core/';
 import TextField from '@material-ui/core/TextField';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import ChatBox from '../components/ChatBox';
+import MessageChat from '../components/MessageChat';
 import GroupBox from '../components/GroupBox';
 import { Button, Grid, Link } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import axios from 'axios';
+import moment from 'moment';
 import { loadBalancer, socketServer } from '../ip';
 import io from 'socket.io-client';
 
@@ -21,30 +22,34 @@ const Main = ({ uid, changeUid }) => {
   const [focusedMessage, setFocusMessage] = useState(null);
 
   const handleCreateGroup = async () => {
-    try {
-      const result = await axios.post(loadBalancer + '/group/create', {
-        gname: newGroup,
-        uid,
-      });
-      const { data, status } = result;
-      if (status === 200) {
-        setNewGroup('');
-        fetchAllGroup();
+    if (newGroup !== '') {
+      try {
+        const result = await axios.post(loadBalancer + '/group/create', {
+          gname: newGroup,
+          uid,
+        });
+        const { data, status } = result;
+        if (status === 200) {
+          setNewGroup('');
+          fetchAllGroup();
+        }
+      } catch (e) {
+        console.log('Can not access database');
       }
-    } catch (e) {
-      console.log('Can not access database');
     }
   };
 
   const handleOpenGroup = async (index) => {
     if (allGroup[index].join) {
+      if (focusedGroup) {
+        await handleReadMessage(focusedGroup.gid);
+      }
       const new_message = await fetchMessage(allGroup[index].gid);
       setFocus(allGroup[index]);
       handleSetFocusMessage(new_message);
       const new_allGroup = allGroup;
       new_allGroup[index].unread = false;
       setAllGroup(new_allGroup);
-      await handleReadMessage(allGroup[index].gid);
     }
   };
 
@@ -73,30 +78,40 @@ const Main = ({ uid, changeUid }) => {
   };
 
   const handleSendMessage = async () => {
-    const result = await axios.post(loadBalancer + '/message/send', {
-      uid,
-      gid: focusedGroup.gid,
-      content: message,
-    });
-    const { status } = result;
-    if (status === 200) {
+    if (message !== '') {
       setMessage('');
-      // await handleReadMessage(focusedGroup.gid);
-      // const new_message = await fetchMessage(focusedGroup.gid);
-      // await fetchAllGroup();
-      // setFocus(focusedGroup);
-      // handleSetFocusMessage(new_message);
+      const result = await axios.post(loadBalancer + '/message/send', {
+        uid,
+        gid: focusedGroup.gid,
+        content: message,
+      });
+      const { status } = result;
+      if (status === 200) {
+        // await handleReadMessage(focusedGroup.gid);
+        // const new_message = await fetchMessage(focusedGroup.gid);
+        // await fetchAllGroup();
+        // setFocus(focusedGroup);
+        // handleSetFocusMessage(new_message);
+      }
     }
   };
 
   const handleSetFocusMessage = (new_message) => {
-    setFocusMessage(new_message);
-    var objDiv = document.getElementById('chat');
-    var objDiv2 = document.getElementById('unread-chat');
-    if (new_message && new_message.unreadMessage.length <= 0) {
-      objDiv.scrollTop = objDiv.scrollHeight;
-    } else if (new_message) {
-      objDiv.scrollTop = objDiv2.offsetTop;
+    if (new_message) {
+      new_message.readMessage.sort(
+        (a, b) => moment(a.send_at).format('x') - moment(b.send_at).format('x')
+      );
+      new_message.unreadMessage.sort(
+        (a, b) => moment(a.send_at).format('x') - moment(b.send_at).format('x')
+      );
+      setFocusMessage(new_message);
+      var objDiv = document.getElementById('chat');
+      var objDiv2 = document.getElementById('unread-chat');
+      if (new_message && new_message.unreadMessage.length <= 0) {
+        objDiv.scrollTop = objDiv.scrollHeight;
+      } else if (new_message) {
+        objDiv.scrollTop = objDiv2.offsetTop;
+      }
     }
   };
 
@@ -130,7 +145,7 @@ const Main = ({ uid, changeUid }) => {
   const handleReceiveMessage = async (data) => {
     // if (data.message.uid !== uid) {
     if (data.message && focusedGroup && data.message.gid === focusedGroup.gid) {
-      await handleReadMessage(focusedGroup.gid);
+      // await handleReadMessage(focusedGroup.gid);
       const { unreadMessage, readMessage } = focusedMessage;
       readMessage.push(...unreadMessage);
       readMessage.push(data.message);
@@ -145,7 +160,6 @@ const Main = ({ uid, changeUid }) => {
 
   useEffect(() => {
     socket.on('chat', (response) => {
-      console.log('hiii');
       handleReceiveMessage(response);
     });
     return () => {
@@ -286,9 +300,10 @@ const Main = ({ uid, changeUid }) => {
                   </div>
                   <IconButton
                     style={{ color: '#979797' }}
-                    onClick={() => {
+                    onClick={async () => {
                       setFocus(null);
                       handleSetFocusMessage(null);
+                      await handleReadMessage(focusedGroup.gid);
                     }}
                   >
                     <CloseIcon />
@@ -319,49 +334,7 @@ const Main = ({ uid, changeUid }) => {
                 overflow: 'hidden',
               }}
             >
-              <div
-                id="chat"
-                style={{
-                  height: '100%',
-                  overflow: 'scroll',
-                  position: 'relative',
-                }}
-              >
-                {focusedMessage.readMessage.map((i, index) => (
-                  <ChatBox data={i} key={index} />
-                ))}
-                {/* {focusedMessage.unreadMessage.length > 0 && ( // TODO set status */}
-                <div
-                  id="unread-chat"
-                  style={{
-                    justifyContent: 'center',
-                    margin: '5px 0 5px 0',
-                    display:
-                      focusedMessage.unreadMessage.length <= 0
-                        ? 'none'
-                        : 'flex',
-                  }}
-                >
-                  <div
-                    style={{
-                      backgroundColor: '#F4F4F4',
-                      color: '#606060',
-                      fontSize: '14px',
-                      height: '22px',
-                      width: '55px',
-                      borderRadius: '10%',
-                      textAlign: 'center',
-                      textAlignVertical: 'center',
-                    }}
-                  >
-                    unread
-                  </div>
-                </div>
-                {/* )} */}
-                {focusedMessage.unreadMessage.map((i, index) => (
-                  <ChatBox data={i} key={index} />
-                ))}
-              </div>
+              <MessageChat focusedMessage={focusedMessage} />
               <TextField
                 variant="outlined"
                 placeholder="Message.."
